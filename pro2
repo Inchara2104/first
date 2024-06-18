@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number of processes: ");
+        int n = scanner.nextInt();
+
+        int[] arrivalTime = new int[n];
+        int[] burstTime = new int[n];
+        int[] completionTime = new int[n];
+        int[] turnaroundTime = new int[n];
+        int[] waitingTime = new int[n];
+
+        // Input arrival times and burst times
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter arrival time for process " + (i + 1) + ": ");
+            arrivalTime[i] = scanner.nextInt();
+            System.out.print("Enter burst time for process " + (i + 1) + ": ");
+            burstTime[i] = scanner.nextInt();
+        }
+
+        // Calculate completion time for each process
+        completionTime[0] = arrivalTime[0] + burstTime[0];
+        for (int i = 1; i < n; i++) {
+            completionTime[i] = completionTime[i - 1] + burstTime[i];
+        }
+
+        // Calculate turnaround time and waiting time for each process
+        for (int i = 0; i < n; i++) {
+            turnaroundTime[i] = completionTime[i] - arrivalTime[i];
+            waitingTime[i] = turnaroundTime[i] - burstTime[i];
+        }
+
+        // Calculate average turnaround time and average waiting time
+        double avgTurnaroundTime = 0;
+        double avgWaitingTime = 0;
+        for (int i = 0; i < n; i++) {
+            avgTurnaroundTime += turnaroundTime[i];
+            avgWaitingTime += waitingTime[i];
+        }
+        avgTurnaroundTime /= n;
+        avgWaitingTime /= n;
+
+        // Display results
+        System.out.println("\nProcess\t Arrival Time\t Burst Time\t Completion Time\t Turnaround Time\t Waiting Time");
+        for (int i = 0; i < n; i++) {
+            System.out.println((i + 1) + "\t\t " + arrivalTime[i] + "\t\t " + burstTime[i] + "\t\t " + completionTime[i]
+                    + "\t\t " + turnaroundTime[i] + "\t\t " + waitingTime[i]);
+        }
+        System.out.println("\nAverage Turnaround Time: " + avgTurnaroundTime);
+        System.out.println("Average Waiting Time: " + avgWaitingTime);
+
+        scanner.close();
+    }
+}
