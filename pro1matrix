@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int a[5][5], b[5][5], c[5][5];
+    int rows, cols, x, y, z;
+
+    // Assuming rows and cols are the same for both matrices
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    printf("Enter elements for the 1st matrix\n");
+    for(x = 0; x < rows; x++){
+        for(y = 0; y < cols; y++){
+            scanf("%d", &a[x][y]);
+        }
+    }
+
+    printf("Enter elements for the 2nd matrix\n");
+    for(x = 0; x < rows; x++){
+        for(y = 0; y < cols; y++){
+            scanf("%d", &b[x][y]);
+        }
+    }
+
+    // Initializing elements of matrix c to 0
+    for(x = 0; x < rows; x++){
+        for(y = 0; y < cols; y++){
+            c[x][y] = 0;
+            for(z = 0; z < cols; z++){ // Changed 'n' to 'cols' here
+                c[x][y] += a[x][z] * b[z][y];
+            }
+        }
+    }
+
+    printf("The result is:\n");
+    for(x = 0; x < rows; x++){
+        for(y = 0; y < cols; y++){
+            printf("%d\t", c[x][y]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
