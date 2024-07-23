@@ -1,9 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.cloudbus.cloudsim.examples.network;
-
 import java.text.ParseException;
 
 public class fcfs {
@@ -26,7 +20,6 @@ public class fcfs {
 
         findwaitingtime(process, n, wt, bt);
         findturnaroundtime(process, n, bt, wt, tat);
-
         System.out.println("Proc\tBurst Time\tWaiting Time\tTurn Around Time");
 
         for (int i = 0; i < n; i++) {
@@ -48,5 +41,5 @@ public class fcfs {
         int burst_time[] = {10, 5, 8};
 
         findavgtime(process, n, burst_time);
-    }
+    }
 }
